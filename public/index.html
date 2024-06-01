@@ -1,0 +1,22 @@
+<body>
+  <h1>L7 API Testing Page</h1>
+  <button id="l7-api-response">L7 Get API response</button>
+
+  <p id="response" style="display: none;">Api response: <pre id="output"></pre></p>
+
+  <script>
+    document.getElementById('l7-api-response').addEventListener('click', () => {
+      const p = document.getElementById('response')
+      p.style.display = 'block'
+
+      fetch('/greeting').then(r => {
+        if (!r.ok) {
+          return r.statusText
+        }
+        return r.text()
+      }).then(text => {
+        document.getElementById('output').innerText = text
+      })
+    })
+  </script>
+</body>
